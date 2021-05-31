@@ -6,4 +6,4 @@ archivo con el resultado.
 
 Luego de clonar el proyecto, ejecutar lo siguiente:
 
-npm install
+    npm install

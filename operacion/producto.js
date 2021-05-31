@@ -1,29 +1,28 @@
 const fs = require('fs');
 const colors = require("colors");
 
-let crear = (base, limite = 10) => {
-    return new Promise((resolve, reject) => {
-        if (!Number(base)) {
-            reject(`El valor ${base} no es un número`);
-            return;
-        }
-
-        let data = '';
+const crear = async(base, listar = false, limite = 10) => {
+    try {
+        let salida = '',
+            consola = '';
 
         for (let i = 1; i <= limite; i++) {
-            data += `${base} * ${i} = ${base * i}\n`;
+            salida += `${base} x ${i} = ${base * i}\n`;
+            consola += `${base} ${'x'.white} ${i} ${'='.white} ${base * i}\n`;
         }
 
-        fs.writeFile(`tablas/tabla-${base}.txt`, data, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(`tabla-${base}.txt`);
-            }
+        if (listar) {
+            console.log("===============".grey);
+            console.log('  Tabla del'.grey, colors.blue(base));
+            console.log("===============".grey);
+            console.log(consola);
+        }
 
-            // console.log(`El archivo tabla-${base}.txt ha sido creado`);
-        });
-    })
+        fs.writeFileSync(`./tablas/tabla-${base}.txt`, salida);
+        return `tabla-${base}.txt`;
+    } catch (err) {
+        throw err;
+    }
 }
 
 let listar = (base, limite = 10) => {
