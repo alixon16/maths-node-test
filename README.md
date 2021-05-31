@@ -15,4 +15,5 @@ Opciones:
 ``` 
 
 Luego de clonar el proyecto, ejecutar lo siguiente:
+    
     npm install
